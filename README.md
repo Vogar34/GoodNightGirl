@@ -5,3 +5,4 @@ Started in 2019 with no previous knowledge of javascript or coding in general.
 currently 2021 with java, javascript, and c++.
 My code is un-optimized and doesnt work correctly, however I will be revamping it soon.
 (probably going to recode it entirely)
+Just started recode and optimizations, can be found as: "recode.js"
