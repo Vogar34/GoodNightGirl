@@ -1,6 +1,4 @@
-const { time } = require('console');
 const Discord = require('discord.js');//api v12
-const { TIMEOUT } = require('dns');
 const client = new Discord.Client();
 const token = ''
 const ffmpeg = require("ffmpeg")
