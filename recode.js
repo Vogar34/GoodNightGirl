@@ -1,7 +1,7 @@
 const Discord = require('discord.js');//api v12
 const client = new Discord.Client();
-const token = ''
-client.setMaxListeners(700) 
+const token = '';
+client.setMaxListeners(700);
 client.login(token);// logins into bot with token.
 
 
@@ -213,9 +213,11 @@ client.on('message', function(message){
     client.on('message', function(message){//broken
         if (message.content.toLowerCase().startsWith('.gamr')) { 
             client.users.fetch('693514148679778324');
+           
             for(let i=0;i<5;i++){
-                client.users.cache.get('6693514148679778324').send("your a cutie xxxx");
-                message.author.send('your a cutie xxxxx');
+                
+                client.users.cache.get('693514148679778324').send("you're a cutie")
+                message.author.send("you're a cutie xxxxx");
             }
         }
     })
