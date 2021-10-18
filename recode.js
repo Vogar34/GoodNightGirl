@@ -1,7 +1,7 @@
 const Discord = require('discord.js');//api v12
 const client = new Discord.Client();
-const token = '';
-client.setMaxListeners(700);
+const token = ''
+client.setMaxListeners(700) 
 client.login(token);// logins into bot with token.
 
 
@@ -299,3 +299,48 @@ client.on('message', function(message){
     }
 )
 
+function cards(){
+    //randomizes the cards
+    const card3 = (Math.floor(Math.random() * (11 - 2 + 1))) + 1;
+    const card4 = (Math.floor(Math.random() * (11 - 2 + 1))) + 1;
+//checks if any of the cards you have are aces.
+    if(card3 == 11 || card4 == 11){
+        message.channel.send("You have an Ace");
+    }
+}
+client.on('message',function(message){
+    if(message.content ==".blackjack") {
+        
+        }
+    }
+)
+client.on('message', function(message) {
+    if (message.content === ".server") {
+       message.channel.send("Server name: ${message.guild.name}");
+   }
+   else if (message.content === ".members") {
+       message.channel.send("Total members: ${message.guild.memberCount}");
+        }
+    }
+)
+client.on('message', function(message) {
+   
+    if(message.content.includes(".coinflip")) {
+        //const ht = message.content.substring(9,1);
+        
+            let coinflip = [
+                'https://cdn.discordapp.com/attachments/867148210563842078/873250416308154418/heads.gif',
+                'https://cdn.discordapp.com/attachments/867148210563842078/873250420896714773/tails.gif'
+            ]
+            const hot = coinflip[Math.floor(Math.random()*coinflip.length)];
+            const embed = new Discord.MessageEmbed()
+            .setTitle('Coinflip')
+            .setAuthor('Made by Gamr')
+            .setFooter('who win')
+            .addFields({ name: 'Heads or tails? ', value: '...', inline: true },)
+            .setTimestamp()
+            .setImage(hot)
+            message.channel.send(embed)
+            }
+        }
+    )
