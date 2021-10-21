@@ -112,10 +112,12 @@ client.on('message', function(message){
 client.on('message', function(message){
     //announcement system 
     if (message.content.toLowerCase().startsWith('.a')) {
-
+        // gets whatever is after the two charactors ``.a`` 
         let announcement = message.content.substring(2);
+        // deletes original message
         message.delete();
-        message.channel.send('@here look at this hot Announcement');
+        //pings people to look at announcement
+        message.channel.send('@here look at this hot Announcement from'+ message.author);//might not work look into later
         const embed = new Discord.MessageEmbed()
         .setTitle('Announcement')
         .setAuthor('Made by Gamr')
@@ -124,18 +126,19 @@ client.on('message', function(message){
         .addFields({ name: '  IMPORTANT --> '+announcement+' ', value: '...', inline: true },)
         .setTimestamp()
         .addFields( {name: 'COMMAND: .a', value: 'Use this carefully and only for major announcements', inline: true },)
+        // sends embed
         message.channel.send(embed);
         }
     })
     client.on('message', message => { // mass pinging for fun
         if (message.content.toLowerCase().startsWith('.sorry')) {
-            let amount = message.content.substring(6);
-            message.delete()
-           for(var i = 0;i<amount;i++){
+            let amount = message.content.substring(6);//gets amount to ping
+            message.delete()// deletes the original message
+           for(var i = 0;i<amount;i++){ // loops until the amount is reached
             message.channel.send('@everyone @here');
            }
         }
-    }) 
+    }) //swear list
     const swears = ["4r5e", "5h1t", "5hit", "a55", "anal", "anus", "ar5e", "arrse", "arse", "ass", "ass-fucker", "asses", "assfucker", "assfukka", "asshole", "assholes", "asswhole", "a_s_s", 
 "b!tch", "b00bs", "b17ch", "b1tch", "ballbag", "balls", "ballsack", "bastard", "beastial", "beastiality", "bellend", "bestial", "bestiality", "bi+ch", "biatch", "bitch", "bitcher", "bitchers", "bitches", 
 "bitchin", "bitching", "bloody", "blow job", "blowjob", "blowjobs", "boiolas", "bollock", "bollok", "boner", "boob", "boobs", "booobs", "boooobs", "booooobs", "booooooobs", "breasts", "buceta", "bugger", 
@@ -166,18 +169,18 @@ client.on('message', function(message){
     "willy", "xrated", "xxx"];
     var enableSwearsFilter = true;
     client.on('message', message => {
-        let foundSwears = message.content.toLowerCase().split(" ").filter(word => swears.indexOf(word) > -1)
+        let foundSwears = message.content.toLowerCase().split(" ").filter(word => swears.indexOf(word) > -1) //sees if any word is in a sentence more than 0 times
         if (enableSwearsFilter && foundSwears.length > 0) {
-          console.log("You can't say "+foundSwears.join(", "));
+          console.log(message.author + "You can't say "+foundSwears.join(", "));// 
           message.delete();
-          message.channel.send("Don't say that!");
+          message.reply("Don't say that!");//replies to user to tell them you cannot swear
         }
       });
       
       client.on('message', message => {
     if(message.content.toLowerCase().startsWith('.filter')) {
-    let ed = message.content.substring(6)
-        if(ed.includes("on")){
+    let ed = message.content.substring(6)// gets letters after .filter
+        if(ed.includes("on")){//checks if it includes `on`
             enableSwearsFilter = true;
             message.channel.send('Filter is now on');
             const embed = new Discord.MessageEmbed()
@@ -189,7 +192,7 @@ client.on('message', function(message){
         .setTimestamp()
         .addFields({ name: '\u200B', value: '\u200B' },{ name: 'COMMAND: .filter on', value: 'Use this if people are saying those naughties!', inline: true },)
         message.channel.send(embed) 
-            }else{
+            }else{//else turn it off
             enableSwearsFilter = false;
             message.channel.send('Filter is now off!');
              const embed = new Discord.MessageEmbed()
@@ -213,17 +216,15 @@ client.on('message', function(message){
     client.on('message', function(message){//broken
         if (message.content.toLowerCase().startsWith('.gamr')) { 
             client.users.fetch('693514148679778324');
-           
-            for(let i=0;i<5;i++){
-                
+            for(let i=0;i<5;i++){//sends a message to author and Gamr(bot creator) 5 times
                 client.users.cache.get('693514148679778324').send("you're a cutie")
                 message.author.send("you're a cutie xxxxx");
             }
         }
     })
     client.on('message', function(message){
-        if(message.content.toLowerCase().startsWith('a')) {
-       for(let i=0;i<5;i++){
+        if(message.content.toLowerCase().startsWith('a')) {//idk wtf this is
+       for(let i=0;i<5;i++){// sends message if author id==id
         if (message.author == ('')) {//insert id here
             message.author.send('<3 luv u');
         }
@@ -231,10 +232,12 @@ client.on('message', function(message){
     }
 })
 client.on('message', function(message){
-    if (message.content.toLowerCase().startsWith('.basecode')) {
-        var x =Math.floor(Math.random() * 9999) + 1;
+    if (message.content.toLowerCase().startsWith('.basecode')) {//if your bored and want to guess codes in rust
+        for(let i =0;i<10;i++){
+        let x =Math.floor(Math.random() * 9999) + 1;
         if(x > 1000) {
-            message.channel.send(x), message.channel.send('si papi :heart:')
+            message.channel.send(x), message.channel.send('si papi :heart:');
+       
         }
     }
 })
@@ -256,11 +259,9 @@ client.on('message', function(message){
             message.channel.send(embed)
         }
     }) //end of rust commands
-    client.on('message', function(message) { //joins general, does nothing besides sitting there
-        let voicechannel = client.channels.cache.get('738993570102640645');
-        if (message.content.toLowerCase().startsWith('.joinvoice')&& voicechannel) { 
-            message.channel.send('joining General!');
-            voicechannel.join();
+     function Gen(){
+          message.channel.send('joining General!');
+          voicechannel.join();
         console.log('Successfully connected.');
         }else if(!voicechannel){
             return console.error('The channel does not exist!');
@@ -269,7 +270,6 @@ client.on('message', function(message){
             message.channel.send('leaving General!');
             console.log('Successfully disconnected.');
         }
-      })
     client.on('message', function(message){
         if (message.content.toLowerCase().startsWith('.moneydance')) { 
             message.channel.send( "https://cdn.discordapp.com/emojis/849093945970393088.gif?v=1, #owned by Money™ ");
@@ -288,6 +288,7 @@ client.on('message', function(message){
     )*/ //wip 
     client.on('message', message => {
         if(message.content.toLowerCase().includes('.play')) {
+            Gen();
             message.channel.send('playing now!');
             const broadcast = client.voice.createBroadcast();
             broadcast.play('C:/Users/Gamr/testing.mp3');
@@ -300,7 +301,7 @@ client.on('message', function(message){
         }
     }
 )
-
+//i have no idea where to start coding blackjack
 function cards(){
     //randomizes the cards
     const card3 = (Math.floor(Math.random() * (11 - 2 + 1))) + 1;
